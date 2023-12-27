@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "message": "User credentials are correct!",
+    "data": {
+        "id": 7,
+        "username": "sabikrahat",
+        "email": "sabikrahat72428@gmail.com",
+        "password": "$2b$10$tKqKZgwyaPdhanMhSIOXouJDjIZWl8KiHLg0uga8/l30yBAqGXsFO",
+        "name": "Md. Sabik Alam Rahat",
+        "avatar": "uploads/2023-12-23T14-13-31.108Z_dt_Github.jpg",
+        "created": "2023-12-23T14:09:35.654Z",
+        "updated": "2023-12-23T14:09:35.654Z"
+    },
+    "tokens": {
+        "access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzAzMzQ1NzIyLCJleHAiOjE3MDM0MzIxMjJ9.mtFXlJ4nnZmYxCFBoehfDdVxnPHZWt49On-HJLT4YgQ",
+        "refresh-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzAzMzQ1NzIyLCJleHAiOjE3MDM3Nzc3MjJ9.D4tlVnZ5gZyBcTajDmSNwmoLeOrJu0o9FptXJEMs62Q"
+    }
+}
