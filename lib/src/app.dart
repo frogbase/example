@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
-import 'package:example/src/modules/settings/model/locale/locale.model.dart';
-import 'package:example/src/modules/settings/model/theme/theme.model.dart';
+import 'frogbase/frogbase.dart';
+import 'modules/settings/model/locale/locale.model.dart';
+import 'modules/settings/model/theme/theme.model.dart';
 import 'package:flutter/material.dart'
     show
         BouncingScrollPhysics,
@@ -64,6 +65,7 @@ class App extends ConsumerWidget {
         backButtonDispatcher:
             BeamerBackButtonDispatcher(delegate: routerDelegate),
         builder: EasyLoading.init(builder: (ctx, child) {
+          globalBeamDelegate = Beamer.of(ctx);
           t = AppLocalizations.of(ctx)!;
           topBarSize = ctx.padding.top;
           bottomViewPadding = ctx.padding.bottom;

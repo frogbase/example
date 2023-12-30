@@ -1,9 +1,9 @@
 import 'dart:convert' show base64, base64Decode, json, jsonDecode, utf8;
 
-import 'package:example/src/db/hive.dart';
-import 'package:example/src/frogbase/model/token.dart';
-import 'package:example/src/modules/auth/model/user.dart';
-import 'package:example/src/utils/extensions/extensions.dart';
+import '../../db/hive.dart';
+import 'token.dart';
+import '../../modules/auth/model/user.dart';
+import '../../utils/extensions/extensions.dart';
 import 'package:hive/hive.dart';
 
 import '../../config/constants.dart';

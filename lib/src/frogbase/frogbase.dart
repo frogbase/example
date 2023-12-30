@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:example/src/frogbase/utils/helpers.dart';
-import 'package:example/src/utils/extensions/extensions.dart';
+import 'package:beamer/beamer.dart';
+import 'utils/helpers.dart';
+import '../utils/extensions/extensions.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/constants.dart';
@@ -10,6 +11,8 @@ import '../utils/logger/logger_helper.dart';
 import 'model/api.response.dart';
 import 'model/auth.store.dart';
 import 'model/token.dart';
+
+late BeamerDelegate globalBeamDelegate;
 
 class Frogbase {
   late AuthStore? authStore;
@@ -72,19 +75,18 @@ class Frogbase {
     }
   }
 
-  Future<String> get _token async {
-    if (authStore == null) return Future.value('N/A');
-    if (authStore!.isAccessTokenValid) {
-      return Future.value(authStore!.tokens.accessToken);
-    }
+  Future<String?> get _token async {
+    if (authStore == null) return null;
+    if (authStore!.isAccessTokenValid) return authStore!.tokens.accessToken;
     return await _refreshToken();
   }
 
-  Future<String> _refreshToken() async {
-    if (authStore == null) return Future.value('N/A');
+  Future<String?> _refreshToken() async {
+    if (authStore == null) return null;
     if (!authStore!.isRefreshTokenValid) {
       await signout();
-      return Future.value('N/A');
+      globalBeamDelegate.update();
+      return null;
     }
     final response = await apiRequest(
       'POST',
@@ -106,10 +108,11 @@ class Frogbase {
     Map<String, dynamic>? data,
     bool isAuthRequired = true,
   }) async {
+    final token = await _token;
+    if (isAuthRequired && token == null) throw 'Session expired. Please sign in again.';
     final headers = {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ${await _token}',
-      if (isAuthRequired) 'Authorization': 'Bearer ${await _token}',
+      if (isAuthRequired) 'Authorization': 'Bearer $token',
     };
     var request = http.Request(method, Uri.parse('$apiBaseUrl/$endPoint'));
     if (data != null) request.body = json.encode(data);

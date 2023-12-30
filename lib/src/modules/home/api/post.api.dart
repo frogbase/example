@@ -10,11 +10,11 @@ import '../../../shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import '../../../utils/logger/logger_helper.dart';
 import '../model/post.model.dart';
 
-Future<List<Post>> getPostsApi([
+Future<List<Post>> getPostsApi({
   int page = 1,
   int limit = 50,
   String filter = '',
-]) async {
+}) async {
   EasyLoading.show(status: 'Fetching posts...');
   try {
     //

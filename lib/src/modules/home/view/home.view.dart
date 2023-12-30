@@ -1,8 +1,8 @@
-import 'package:example/app.routes.dart';
-import 'package:example/src/config/constants.dart';
-import 'package:example/src/db/db.dart';
-import 'package:example/src/modules/home/provider/home.provider.dart';
-import 'package:example/src/modules/settings/model/settings.model.dart';
+import '../../../../app.routes.dart';
+import '../../../config/constants.dart';
+import '../../../db/db.dart';
+import '../provider/home.provider.dart';
+import '../../settings/model/settings.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -13,6 +13,8 @@ import '../../../config/screen_enlarge_warning.dart';
 import '../../../config/zoom.level.adjust.dart';
 import '../../../frogbase/utils/helpers.dart';
 import '../../../localization/loalization.dart';
+import '../../../shared/animations_widget/animated_widget_shower.dart';
+import '../../../shared/clipboard_data/clipboard_data.dart';
 import '../../../utils/extensions/extensions.dart';
 
 class HomeView extends StatelessWidget {
@@ -88,6 +90,17 @@ class Body extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 10.0),
+                TextFormField(
+                  controller: notifier.searchCntrlr,
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    prefixIcon:
+                        ClearPrefixIcon(() => notifier.searchCntrlr.clear()),
+                    suffixIcon: PasteSuffixIcon(() async =>
+                        notifier.searchCntrlr.text = await getCliboardData()),
+                  ),
+                ),
+                const SizedBox(height: 5.0),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
@@ -98,6 +111,7 @@ class Body extends ConsumerWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 10.0),
                 Expanded(
                   child: notifier.posts.isEmpty
                       ? const Center(child: Text('No posts found'))
@@ -194,5 +208,42 @@ class Body extends ConsumerWidget {
             ),
           );
         });
+  }
+}
+
+class ClearPrefixIcon extends StatelessWidget {
+  const ClearPrefixIcon(this.onTap, {super.key});
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedWidgetShower(
+      size: 28.0,
+      child: InkWell(
+        borderRadius: borderRadius10,
+        onTap: onTap,
+        child: const Icon(Icons.manage_search_sharp),
+      ),
+    );
+  }
+}
+
+class PasteSuffixIcon extends StatelessWidget {
+  const PasteSuffixIcon(this.onTap, {super.key});
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedWidgetShower(
+      size: 28.0,
+      child: InkWell(
+        borderRadius: borderRadius10,
+        onTap: onTap,
+        child: const Icon(
+          Icons.content_paste_go_outlined,
+          size: 20.0,
+        ),
+      ),
+    );
   }
 }

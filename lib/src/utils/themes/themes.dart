@@ -1,5 +1,5 @@
-import 'package:example/src/config/constants.dart';
-import 'package:example/src/utils/extensions/extensions.dart';
+import '../../config/constants.dart';
+import '../extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 

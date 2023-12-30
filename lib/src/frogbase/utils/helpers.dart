@@ -1,4 +1,4 @@
-import 'package:example/src/db/db.dart';
+import '../../db/db.dart';
 
 import '../../config/get.platform.dart';
 import '../frogbase.dart';

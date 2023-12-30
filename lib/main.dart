@@ -1,5 +1,5 @@
 import 'package:beamer/beamer.dart';
-import 'package:example/src/db/db.dart';
+import 'src/db/db.dart';
 import 'package:flutter/material.dart' show runApp;
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

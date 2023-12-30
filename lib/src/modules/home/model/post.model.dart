@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:example/src/modules/auth/model/user.dart';
+import '../../auth/model/user.dart';
 
 class Post {
   final int id;

@@ -1,6 +1,6 @@
 import 'dart:convert' show json;
 
-import 'package:example/src/utils/extensions/extensions.dart';
+import '../../../utils/extensions/extensions.dart';
 import 'package:hive/hive.dart';
 
 import '../../../config/constants.dart';

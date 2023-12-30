@@ -1,5 +1,5 @@
-import 'package:example/src/frogbase/model/auth.store.dart';
-import 'package:example/src/frogbase/model/token.dart';
+import '../frogbase/model/auth.store.dart';
+import '../frogbase/model/token.dart';
 import 'package:hive/hive.dart' show Box, Hive;
 
 import '../modules/auth/model/user.dart';

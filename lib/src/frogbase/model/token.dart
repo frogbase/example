@@ -1,7 +1,7 @@
 import 'dart:convert' show json;
 
-import 'package:example/src/db/hive.dart';
-import 'package:example/src/utils/extensions/extensions.dart';
+import '../../db/hive.dart';
+import '../../utils/extensions/extensions.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../config/constants.dart';
